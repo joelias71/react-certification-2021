@@ -19,4 +19,7 @@ export const GlobalStyles = createGlobalStyle`
   .navbar-text:hover {
     background: ${({ theme }) => theme.background};
   }
+  .card {
+    background: ${({ theme }) => theme.cardColor};
+  }
 `;

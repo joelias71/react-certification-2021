@@ -10,11 +10,12 @@
 html,
 body {
   height: 100%;
+  width: 100%;
 }
 
-body {
+/*body {
   transition: all 0.5s linear;
-}
+}*/
 
 :root {
   --color-black-two: #222222;

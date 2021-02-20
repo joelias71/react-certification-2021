@@ -1,8 +1,6 @@
-.homepage {
-  text-align: center;
-}
-
-.homepage h1 {
-  font-size: 3rem;
-  letter-spacing: -2px;
+.container-list {
+  min-height: calc(100vh - 6rem);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
