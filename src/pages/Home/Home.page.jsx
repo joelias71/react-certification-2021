@@ -1,39 +1,18 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import Navbar from '../../components/Navbar';
+import { GlobalStyles } from '../../components/globalStyles';
+import { lightTheme, darkTheme } from '../../components/Themes';
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
-
-function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
-
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
+function App() {
+  const [darkMode, setDarkMode] = useState(true);
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <GlobalStyles />
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+    </ThemeProvider>
   );
 }
 
-export default HomePage;
+export default App;
