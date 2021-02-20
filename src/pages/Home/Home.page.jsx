@@ -7,7 +7,7 @@ import Card from '../../components/Card';
 import { youtube } from '../../utils/youtube-videos-mock';
 import './Home.styles.css';
 
-function App() {
+function Home() {
   const [darkMode, setDarkMode] = useState(true);
   const cardList = youtube.items.map((video) => (
     <Card
@@ -29,4 +29,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
