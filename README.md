@@ -41,7 +41,11 @@ Please refere to the following [GIST](https://gist.github.com/jparciga/83341911f
    - If needed it could be setted the coverage and some rules to define with files ara included in the tests.
 2. What components are worth to test in your development?
    I could say that all, what can be tested in a component is:  
-    - If it render: Test that any component render correctly, verify syntax errors. - The output: Go an step further and verify that the output is correct. - Test the state, that change correct - Test the events: Like onClick, onChange, etc. - Edge cases: Anything that could have edge cases like an array that could be empty.
+    - If it render: Test that any component render correctly, verify syntax errors. 
+    - The output: Go an step further and verify that the output is correct. 
+    - Test the state, that change correct 
+    - Test the events: Like onClick, onChange, etc. 
+    - Edge cases: Anything that could have edge cases like an array that could be empty.
 3. Can you apply TDD once you already created components?
    - Yes, TDD refers to write and correct the failed tests before writing new code, so you can test the components are worth it do see that the expect behavior is accomplish, increase the coverage and decrease the number of errors.
 
