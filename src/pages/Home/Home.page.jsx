@@ -5,7 +5,7 @@ import { GlobalStyles } from '../../components/globalStyles';
 import { lightTheme, darkTheme } from '../../components/Themes';
 import Card from '../../components/Card';
 import { youtube } from '../../utils/youtube-videos-mock';
-import './Home.styles.css';
+import { ContainerList } from './Home.styles';
 
 function Home() {
   const [darkMode, setDarkMode] = useState(true);
@@ -19,13 +19,11 @@ function Home() {
   ));
 
   return (
-    <>
-      <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-        <GlobalStyles />
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-        <div className="container-list">{cardList.splice(1)}</div>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <GlobalStyles />
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <ContainerList>{cardList.splice(1)}</ContainerList>
+    </ThemeProvider>
   );
 }
 

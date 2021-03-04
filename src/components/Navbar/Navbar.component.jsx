@@ -2,44 +2,16 @@ import React, { useState } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import './Navbar.styles.css';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-
-const CustomSwitch = withStyles({
-  switchBase: {
-    color: '#fff',
-  },
-  checked: {
-    color: '#f2575d',
-  },
-  track: {
-    backgroundColor: '#f2575d',
-  },
-})(Switch);
-
-const useStyles = makeStyles({
-  root: {
-    padding: '2px 4px',
-    display: 'flex',
-    alignItems: 'center',
-    width: 400,
-  },
-  inputSearch: {
-    flex: 1,
-    color: '#fff',
-  },
-  iconButton: {
-    padding: 12,
-    color: '#fff',
-    marginRight: 10,
-    marginTop: 0,
-    height: 50,
-  },
-});
+import {
+  CustomSwitch,
+  useStyles,
+  SearchBox,
+  NavbarMenu,
+  NavbarHeader,
+} from './Navbar.styles';
 
 export default function Navbar({ setDarkMode, darkMode }) {
   const classes = useStyles();
@@ -48,7 +20,7 @@ export default function Navbar({ setDarkMode, darkMode }) {
 
   return (
     <>
-      <header className="navbar">
+      <NavbarHeader>
         <div className="navbar">
           <IconButton
             className={classes.iconButton}
@@ -57,12 +29,12 @@ export default function Navbar({ setDarkMode, darkMode }) {
           >
             <MenuIcon />
           </IconButton>
-          <div className="searchBox">
+          <SearchBox>
             <InputBase className={classes.inputSearch} placeholder="Search ..." />
             <IconButton type="submit" className={classes.iconButton} aria-label="search">
               <SearchIcon />
             </IconButton>
-          </div>
+          </SearchBox>
         </div>
         <div>
           <FormControlLabel
@@ -73,11 +45,10 @@ export default function Navbar({ setDarkMode, darkMode }) {
                 name="darkMode"
               />
             }
-            label="Dark mode"
           />
         </div>
-      </header>
-      <nav className={sidebar ? 'navbar-menu active' : 'navbar-menu'}>
+      </NavbarHeader>
+      <NavbarMenu active={sidebar}>
         <ul className="navbar-menu__items">
           <li className="navbar-menu__items__toggle">
             <IconButton
@@ -92,7 +63,7 @@ export default function Navbar({ setDarkMode, darkMode }) {
             Home
           </li>
         </ul>
-      </nav>
+      </NavbarMenu>
     </>
   );
 }
