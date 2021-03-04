@@ -1,39 +1,30 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import Navbar from '../../components/Navbar';
+import { GlobalStyles } from '../../components/globalStyles';
+import { lightTheme, darkTheme } from '../../components/Themes';
+import Card from '../../components/Card';
+import { youtube } from '../../utils/youtube-videos-mock';
+import { ContainerList } from './Home.styles';
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
-
-function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
-
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
+function Home() {
+  const [darkMode, setDarkMode] = useState(true);
+  const cardList = youtube.items.map((video) => (
+    <Card
+      key={video.etag}
+      image={video.snippet.thumbnails.high.url}
+      title={video.snippet.title}
+      description={video.snippet.description}
+    />
+  ));
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <GlobalStyles />
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <ContainerList>{cardList.splice(1)}</ContainerList>
+    </ThemeProvider>
   );
 }
 
-export default HomePage;
+export default Home;
