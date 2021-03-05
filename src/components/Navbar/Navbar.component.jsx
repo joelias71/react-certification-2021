@@ -13,10 +13,11 @@ import {
   NavbarHeader,
 } from './Navbar.styles';
 
-export default function Navbar({ setDarkMode, darkMode }) {
+export default function Navbar({ setDarkMode, darkMode, setParam }) {
   const classes = useStyles();
   const themeToggler = (themeMode) => setDarkMode(!themeMode);
   const [sidebar, setSidebar] = useState(false);
+  const [searchParam, setSearchParam] = useState('wizeline');
 
   return (
     <>
@@ -30,8 +31,18 @@ export default function Navbar({ setDarkMode, darkMode }) {
             <MenuIcon />
           </IconButton>
           <SearchBox>
-            <InputBase className={classes.inputSearch} placeholder="Search ..." />
-            <IconButton type="submit" className={classes.iconButton} aria-label="search">
+            <InputBase
+              className={classes.inputSearch}
+              placeholder="Search ..."
+              value={searchParam}
+              onChange={(e) => setSearchParam(e.target.value)}
+            />
+            <IconButton
+              type="submit"
+              className={classes.iconButton}
+              aria-label="search"
+              onClick={() => setParam(searchParam)}
+            >
               <SearchIcon />
             </IconButton>
           </SearchBox>
