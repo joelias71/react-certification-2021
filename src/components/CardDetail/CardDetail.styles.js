@@ -22,8 +22,12 @@ export const CardDetailStyled = styled.div`
     }
   }
   @media only screen and (min-width: 1000px) {
+    max-height: 6rem;
     p {
       font-size: 0.8em;
     }
+  }
+  @media only screen and (max-width: 999px) {
+    max-height: 8rem;
   }
 `;
