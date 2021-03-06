@@ -46,12 +46,12 @@ export const SelectedVideo = styled.div`
 `;
 
 export const ListOfVideos = styled.div`
-  padding: 1rem;
   overflow-y: scroll;
   @media only screen and (max-width: 999px) {
     width: 100%;
   }
   @media only screen and (min-width: 1000px) {
     width: 30%;
+    padding: 1rem;
   }
 `;

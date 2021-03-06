@@ -19,7 +19,6 @@ function Home() {
   const [seeVideoDetail, setSeeVideoDetail] = useState(false);
 
   useEffect(() => {
-    console.log('fetch getVideos ', param);
     getVideos(param, setListofVideos, setError);
     // setListofVideos(youtube.items);
     // setError(undefined);
