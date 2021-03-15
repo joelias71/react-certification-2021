@@ -10,6 +10,7 @@ describe('Navbar', () => {
     props = {
       darkMode: true,
       setDarkMode: jest.fn,
+      setParam: jest.fn,
     };
     component = shallow(<Navbar {...props} />);
   });
