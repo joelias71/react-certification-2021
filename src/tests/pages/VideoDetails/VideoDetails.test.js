@@ -1,6 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import VideoDetails from '../../../pages/VideoDetails/VideoDetails.page';
+import { GlobalContext } from '../../../providers/Global';
 
 describe('Home', () => {
   let component;
@@ -33,9 +34,12 @@ describe('Home', () => {
           },
         },
       ],
-      setSelectedVideo: jest.fn(),
     };
-    component = shallow(<VideoDetails {...props} />);
+    component = mount(
+      <GlobalContext.Provider value={{ state: props, dispatch: jest.fn }}>
+        <VideoDetails {...props} />
+      </GlobalContext.Provider>
+    );
   });
   it('renders...', () => {
     expect(component).toHaveLength(1);

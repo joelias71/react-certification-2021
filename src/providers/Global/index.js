@@ -1,1 +1,1 @@
-export { default, useGlobal } from './Global.provider';
+export { default, useGlobal, GlobalContext } from './Global.provider';

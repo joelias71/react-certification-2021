@@ -15,7 +15,7 @@ const initialState = {
 function useGlobal() {
   const context = useContext(GlobalContext);
   if (!context) {
-    throw new Error(`Can't use "useVideo" without a VideoProvider!`);
+    throw new Error(`Can't use "useGlobal" without a GlobalProvider!`);
   }
   return context;
 }
@@ -30,5 +30,5 @@ function GlobalProvider({ children }) {
   );
 }
 
-export { useGlobal };
+export { useGlobal, GlobalContext };
 export default GlobalProvider;
