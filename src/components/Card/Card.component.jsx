@@ -1,19 +1,20 @@
 import React from 'react';
 import { CardStyled } from './Card.styles';
+import { useGlobal } from '../../providers/Global';
+import { SET_VIDEO, SET_SEE_VIDEO_DETAIL } from '../../actions/actions';
 
-export default function Card({
-  image,
-  title,
-  description,
-  video,
-  setSelectedVideo,
-  setSeeVideoDetail,
-}) {
+export default function Card({ image, title, description, video }) {
+  const { dispatch } = useGlobal();
   return (
     <CardStyled
       onClick={() => {
-        setSelectedVideo(video);
-        setSeeVideoDetail(true);
+        dispatch({
+          type: SET_VIDEO,
+          payload: { selectedVideo: video },
+        });
+        dispatch({
+          type: SET_SEE_VIDEO_DETAIL,
+        });
       }}
     >
       <img src={image} alt={title} />

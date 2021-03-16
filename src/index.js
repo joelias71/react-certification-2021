@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import Home from './pages/Home';
+import GlobalProvider from './providers/Global';
+import App from './components/App';
 import './global.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <GlobalProvider>
+      <App />
+    </GlobalProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

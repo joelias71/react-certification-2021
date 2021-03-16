@@ -1,16 +1,20 @@
 import React from 'react';
 import TextTruncate from 'react-text-truncate';
 import { CardDetailStyled } from './CardDetail.styles';
+import { useGlobal } from '../../providers/Global';
+import { SET_VIDEO } from '../../actions/actions';
 
-export default function CardDetail({
-  image,
-  title,
-  description,
-  video,
-  setSelectedVideo,
-}) {
+export default function CardDetail({ image, title, description, video }) {
+  const { dispatch } = useGlobal();
   return (
-    <CardDetailStyled onClick={() => setSelectedVideo(video)}>
+    <CardDetailStyled
+      onClick={() =>
+        dispatch({
+          type: SET_VIDEO,
+          payload: { selectedVideo: video },
+        })
+      }
+    >
       <img src={image} alt={title} />
       <div className="cardDetail">
         <TextTruncate
