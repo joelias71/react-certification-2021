@@ -1,6 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Navbar from '../../../components/Navbar';
+import GlobalProvider from '../../../providers/Global';
 
 describe('Navbar', () => {
   let component;
@@ -8,11 +9,14 @@ describe('Navbar', () => {
 
   beforeEach(() => {
     props = {
-      darkMode: true,
-      setDarkMode: jest.fn,
-      setParam: jest.fn,
+      sidebar: false,
+      setSidebar: jest.fn,
     };
-    component = shallow(<Navbar {...props} />);
+    component = mount(
+      <GlobalProvider>
+        <Navbar {...props} />
+      </GlobalProvider>
+    );
   });
   it('renders...', () => {
     expect(component).toHaveLength(1);

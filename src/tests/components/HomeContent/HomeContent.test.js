@@ -1,19 +1,23 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Home from '../../../pages/Home/Home.page';
+import HomeContent from '../../../components/HomeContent';
 import GlobalProvider from '../../../providers/Global';
 
-describe('Home', () => {
+describe('HomeContent', () => {
   let component;
-  let props;
 
   beforeEach(() => {
-    props = {
+    const state = {
       darkMode: true,
+      param: 'wizeline',
+      selectedVideo: {},
+      listofVideos: [],
+      error: null,
+      seeVideoDetail: false,
     };
     component = mount(
-      <GlobalProvider>
-        <Home {...props} />
+      <GlobalProvider value={{ state, dispatch: jest.fn }}>
+        <HomeContent />
       </GlobalProvider>
     );
   });

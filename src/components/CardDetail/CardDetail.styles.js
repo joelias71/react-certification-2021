@@ -16,18 +16,29 @@ export const CardDetailStyled = styled.div`
   }
   div {
     padding: 1rem;
+    overflow: hidden;
     h1 {
       margin-bottom: 1rem;
       font-size: 1em;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+    }
+    p {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
     }
   }
   @media only screen and (min-width: 1000px) {
-    max-height: 6rem;
+    max-height: 8rem;
     p {
       font-size: 0.8em;
     }
   }
   @media only screen and (max-width: 999px) {
-    max-height: 8rem;
+    max-height: 12rem;
   }
 `;

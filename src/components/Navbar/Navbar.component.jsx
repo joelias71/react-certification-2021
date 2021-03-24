@@ -5,6 +5,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import { useGlobal } from '../../providers/Global';
+import { CHANGE_THEME, SET_PARAM, SEARCH } from '../../actions/actions';
 import {
   CustomSwitch,
   useStyles,
@@ -13,11 +15,10 @@ import {
   NavbarHeader,
 } from './Navbar.styles';
 
-export default function Navbar({ setDarkMode, darkMode, setParam }) {
+export default function Navbar() {
   const classes = useStyles();
-  const themeToggler = (themeMode) => setDarkMode(!themeMode);
+  const { state, dispatch } = useGlobal();
   const [sidebar, setSidebar] = useState(false);
-  const [searchParam, setSearchParam] = useState('wizeline');
 
   return (
     <>
@@ -34,14 +35,24 @@ export default function Navbar({ setDarkMode, darkMode, setParam }) {
             <InputBase
               className={classes.inputSearch}
               placeholder="Search ..."
-              value={searchParam}
-              onChange={(e) => setSearchParam(e.target.value)}
+              value={state.param}
+              onChange={(e) =>
+                dispatch({
+                  type: SET_PARAM,
+                  payload: { ...state, param: e.target.value },
+                })
+              }
             />
             <IconButton
               type="submit"
               className={classes.iconButton}
               aria-label="search"
-              onClick={() => setParam(searchParam)}
+              onClick={() =>
+                dispatch({
+                  type: SEARCH,
+                  payload: state,
+                })
+              }
             >
               <SearchIcon />
             </IconButton>
@@ -51,8 +62,8 @@ export default function Navbar({ setDarkMode, darkMode, setParam }) {
           <FormControlLabel
             control={
               <CustomSwitch
-                checked={darkMode}
-                onChange={() => themeToggler(darkMode)}
+                checked={state.darkMode}
+                onChange={() => dispatch({ type: CHANGE_THEME })}
                 name="darkMode"
               />
             }

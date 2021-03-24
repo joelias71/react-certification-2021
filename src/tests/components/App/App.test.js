@@ -1,19 +1,15 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Home from '../../../pages/Home/Home.page';
+import App from '../../../components/App';
 import GlobalProvider from '../../../providers/Global';
 
-describe('Home', () => {
+describe('App', () => {
   let component;
-  let props;
 
   beforeEach(() => {
-    props = {
-      darkMode: true,
-    };
     component = mount(
       <GlobalProvider>
-        <Home {...props} />
+        <App />
       </GlobalProvider>
     );
   });
