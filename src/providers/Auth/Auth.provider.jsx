@@ -24,21 +24,24 @@ function AuthProvider({ children }) {
     setAuthenticated(isAuthenticated);
   }, []);
 
-  const login = useCallback((user, pwd) => {
-    if ((user && pwd && user !== VALID_USERNAME) || pwd !== VALID_PASSWORD) {
-      throw new Error('Oops, you have an invalid username or password');
-    } else {
-      setAuthenticated(true);
-      storage.set(AUTH_STORAGE_KEY, true);
-      history.push('/');
-    }
-  }, []);
+  const login = useCallback(
+    (user, pwd) => {
+      if ((user && pwd && user !== VALID_USERNAME) || pwd !== VALID_PASSWORD) {
+        throw new Error('Oops, you have an invalid username or password');
+      } else {
+        setAuthenticated(true);
+        storage.set(AUTH_STORAGE_KEY, true);
+        history.push('/');
+      }
+    },
+    [history]
+  );
 
   const logout = useCallback(() => {
     setAuthenticated(false);
     storage.set(AUTH_STORAGE_KEY, false);
     history.push('/login');
-  }, []);
+  }, [history]);
 
   return (
     <AuthContext.Provider value={{ login, logout, authenticated }}>
