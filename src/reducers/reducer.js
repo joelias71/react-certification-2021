@@ -4,7 +4,6 @@ import {
   SET_VIDEO,
   SET_LIST_OF_VIDEOS,
   SET_ERROR,
-  SET_SEE_VIDEO_DETAIL,
 } from '../actions/actions';
 
 export default function reducer(state, action) {
@@ -19,8 +18,6 @@ export default function reducer(state, action) {
       return { ...state, listofVideos: action.payload.listofVideos };
     case SET_ERROR:
       return { ...state, error: action.payload.error };
-    case SET_SEE_VIDEO_DETAIL:
-      return { ...state, seeVideoDetail: !state.seeVideoDetail };
     default:
       return state;
   }

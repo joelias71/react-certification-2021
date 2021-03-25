@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useGlobal } from '../../providers/Global';
 import Navbar from '../../components/Navbar';
-import { ContainerList } from './Home.styles';
+import { ContainerList } from '../Home/Home.styles';
 import { getVideos } from '../../services/getVideos';
 import HomeContent from '../../components/HomeContent/HomeContent.page';
 
-function Home() {
+function Favorites() {
   const { state, dispatch } = useGlobal();
 
   useEffect(() => {
@@ -24,4 +24,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Favorites;

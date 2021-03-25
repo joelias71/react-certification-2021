@@ -107,5 +107,9 @@ export const NavbarMenu = styled.nav`
     &:hover {
       background: ${({ theme }) => theme.background};
     }
+    a {
+      text-decoration: none;
+      color: ${({ theme }) => theme.secondaryText};
+    }
   }
 `;

@@ -5,6 +5,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import Fab from '@material-ui/core/Fab';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../providers/Auth';
 import { useGlobal } from '../../providers/Global';
 import { CHANGE_THEME, SET_PARAM, SEARCH } from '../../actions/actions';
 import {
@@ -17,9 +20,9 @@ import {
 
 export default function Navbar() {
   const classes = useStyles();
+  const { logout } = useAuth();
   const { state, dispatch } = useGlobal();
   const [sidebar, setSidebar] = useState(false);
-
   return (
     <>
       <NavbarHeader>
@@ -68,6 +71,9 @@ export default function Navbar() {
               />
             }
           />
+          <Fab variant="extended" aria-label="Log out" onClick={() => logout()}>
+            Log out
+          </Fab>
         </div>
       </NavbarHeader>
       <NavbarMenu active={sidebar}>
@@ -82,7 +88,10 @@ export default function Navbar() {
             </IconButton>
           </li>
           <li key="home" className="navbar-text">
-            Home
+            <Link to="/">Home</Link>
+          </li>
+          <li key="Favorites" className="navbar-text">
+            <Link to="/favorites">Favorites</Link>
           </li>
         </ul>
       </NavbarMenu>

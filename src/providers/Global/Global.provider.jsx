@@ -9,7 +9,6 @@ const initialState = {
   selectedVideo: {},
   listofVideos: [],
   error: null,
-  seeVideoDetail: false,
 };
 
 function useGlobal() {
