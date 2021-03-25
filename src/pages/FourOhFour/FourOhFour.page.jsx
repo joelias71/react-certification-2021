@@ -1,20 +1,21 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
+import Fab from '@material-ui/core/Fab';
 import { useHistory } from 'react-router-dom';
+import { NotFound } from './FourOhFour.styles';
 
 function FourOhFour() {
   const history = useHistory();
 
   return (
-    <main>
-      <div className="Container">
-        <div className="fourOhFour">
-          <h1>404</h1>
-          <p>Page Not Found</p>
-          <Button onClick={() => history.push('/')}>Go to Electronics</Button>
-        </div>
+    <NotFound>
+      <div>
+        <h1>404</h1>
+        <p>Page Not Found</p>
+        <Fab variant="extended" aria-label="Log out" onClick={() => history.push('/')}>
+          Go to Home
+        </Fab>
       </div>
-    </main>
+    </NotFound>
   );
 }
 
