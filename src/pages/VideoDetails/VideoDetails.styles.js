@@ -21,6 +21,10 @@ export const SelectedVideo = styled.div`
   iframe {
     max-width: 100%;
   }
+  svg {
+    margin-left: 1rem;
+    cursor: pointer;
+  }
   background: ${({ theme }) => theme.cardColor};
   @media only screen and (max-width: 999px) {
     width: 100%;

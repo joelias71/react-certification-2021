@@ -1,3 +1,5 @@
+import { FAVORITE_VIDEOS } from './constants';
+
 const storage = {
   get(key) {
     try {
@@ -14,4 +16,29 @@ const storage = {
   },
 };
 
-export { storage };
+const deleteVideo = (id) => {
+  const videos = storage.get(FAVORITE_VIDEOS);
+  storage.set(FAVORITE_VIDEOS, {
+    listofVideos: videos.listofVideos.filter((video) => {
+      return video.etag !== id;
+    }),
+  });
+};
+
+const addVideo = (video) => {
+  const videos = storage.get(FAVORITE_VIDEOS);
+  if (!videos.listofVideos.some((e) => e.etag === video.etag)) {
+    videos.listofVideos.push(video);
+    storage.set(FAVORITE_VIDEOS, videos);
+  }
+};
+
+const isFavoriteVideo = (id) => {
+  const videos = storage.get(FAVORITE_VIDEOS);
+  if (videos.listofVideos.some((e) => e.etag === id)) {
+    return true;
+  }
+  return false;
+};
+
+export { storage, deleteVideo, addVideo, isFavoriteVideo };

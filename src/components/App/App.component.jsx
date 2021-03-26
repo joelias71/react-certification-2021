@@ -22,7 +22,7 @@ export default function App() {
           <GlobalStyles />
           <Switch>
             <ProtectedRoute exact path="/" Component={Home} />
-            <ProtectedRoute exact path="/video" Component={VideoDetail} />
+            <ProtectedRoute path="/video" Component={VideoDetail} />
             <ProtectedRoute exact path="/favorites" Component={Favorites} />
             <Route exact path="/login">
               <LoginPage />

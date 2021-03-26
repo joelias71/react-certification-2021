@@ -4,9 +4,15 @@ import { Container, SelectedVideo, ListOfVideos } from './VideoDetails.styles';
 import CardDetail from '../../components/CardDetail';
 import { useGlobal } from '../../providers/Global';
 import Navbar from '../../components/Navbar';
+import HeartIcon from '../../components/HeartIcon';
+import { UPDATE_FAVORITES_SELECTED_VIDEO } from '../../actions/actions';
+import { storage } from '../../utils/storage';
+import { FAVORITE_VIDEOS } from '../../utils/constants';
 
 function VideoDetails() {
   const { state } = useGlobal();
+  const videos =
+    window.location.pathname === '/video/' ? state : storage.get(FAVORITE_VIDEOS);
 
   if (
     !state.selectedVideo ||
@@ -32,20 +38,22 @@ function VideoDetails() {
           <div>
             <h1>{state.selectedVideo.snippet.title}</h1>
             <p>{state.selectedVideo.snippet.description}</p>
+            <HeartIcon
+              type={UPDATE_FAVORITES_SELECTED_VIDEO}
+              isFavorite={state.selectedVideo.favorite}
+            />
           </div>
         </SelectedVideo>
         <ListOfVideos>
-          {state.listofVideos
-            .map((video) => (
-              <CardDetail
-                key={video.etag}
-                image={video.snippet.thumbnails.high.url}
-                title={video.snippet.title}
-                description={video.snippet.description}
-                video={video}
-              />
-            ))
-            .splice(1)}
+          {videos.listofVideos.map((video) => (
+            <CardDetail
+              key={video.etag}
+              image={video.snippet.thumbnails.high.url}
+              title={video.snippet.title}
+              description={video.snippet.description}
+              video={video}
+            />
+          ))}
         </ListOfVideos>
       </Container>
     </>

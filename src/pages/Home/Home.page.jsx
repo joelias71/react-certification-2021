@@ -18,7 +18,7 @@ function Home() {
     <>
       <Navbar />
       <ContainerList>
-        <HomeContent />
+        <HomeContent videos={state} />
       </ContainerList>
     </>
   );

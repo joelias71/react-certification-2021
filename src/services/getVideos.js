@@ -7,7 +7,7 @@ export const getVideos = (param, dispatch) => {
     .then((response) =>
       dispatch({
         type: SET_LIST_OF_VIDEOS,
-        payload: { listofVideos: response.data.items },
+        payload: { listofVideos: response.data.items.splice(1) },
       })
     )
     .catch((e) =>

@@ -14,7 +14,7 @@ export default function Card({ image, title, description, video }) {
           type: SET_VIDEO,
           payload: { selectedVideo: video },
         });
-        history.push('/video');
+        history.push(`/video${window.location.pathname}`);
       }}
     >
       <img src={image} alt={title} />
