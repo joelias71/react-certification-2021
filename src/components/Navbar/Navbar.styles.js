@@ -36,8 +36,8 @@ export const useStyles = makeStyles({
 
 export const SearchBox = styled.div`
   background: ${({ theme }) => theme.background};
-  padding-left: 1rem;
   border-radius: 15px;
+  padding-left: 1rem;
 `;
 
 export const NavbarHeader = styled.header`
@@ -104,7 +104,6 @@ export const NavbarMenu = styled.nav`
     align-items: center;
     height: 80px;
     list-style: none;
-    cursor: pointer;
     text-align: center;
     line-height: 80px;
     cursor: pointer;
@@ -114,6 +113,17 @@ export const NavbarMenu = styled.nav`
     a {
       text-decoration: none;
       color: ${({ theme }) => theme.secondaryText};
+    }
+  }
+
+  .logout {
+    display: block;
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    height: 6rem;
+    button {
+      margin-top: 2rem;
     }
   }
 `;

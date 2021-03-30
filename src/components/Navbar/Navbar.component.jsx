@@ -75,9 +75,6 @@ export default function Navbar() {
               />
             }
           />
-          <Fab variant="extended" aria-label="Log out" onClick={() => logout()}>
-            Log out
-          </Fab>
         </div>
       </NavbarHeader>
       <NavbarMenu active={sidebar}>
@@ -96,6 +93,11 @@ export default function Navbar() {
           </li>
           <li key="favorites" className="navbar-text">
             <Link to="/favorites">Favorites</Link>
+          </li>
+          <li key="logout" className="logout">
+            <Fab variant="extended" aria-label="Log out" onClick={() => logout()}>
+              Log out
+            </Fab>
           </li>
         </ul>
       </NavbarMenu>
