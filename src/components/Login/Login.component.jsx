@@ -7,6 +7,7 @@ import { FAVORITE_VIDEOS, AUTH_STORAGE_KEY } from '../../utils/constants';
 import { storage } from '../../utils/storage';
 import { useAuth } from '../../providers/Auth';
 import { Login, InputUsername, InputPassword } from './Login.styles';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LoginPage() {
   const history = useHistory();
@@ -25,7 +26,7 @@ function LoginPage() {
 
   return ReactDOM.createPortal(
     <Login>
-      <ToastContainer autoClose={2000} style={{ backgroundColor: 'red' }} />
+      <ToastContainer />
       <form>
         <h1>Login</h1>
         <InputUsername value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -37,7 +38,9 @@ function LoginPage() {
             try {
               login(username.trim(), password.trim());
             } catch {
-              toast.error('Oops, you have an invalid username or password');
+              toast.error('Oops, you have an invalid username or password', {
+                autoClose: 3000,
+              });
             }
           }}
         >

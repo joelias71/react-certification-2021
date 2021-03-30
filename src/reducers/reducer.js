@@ -4,8 +4,7 @@ import {
   SET_VIDEO,
   SET_LIST_OF_VIDEOS,
   SET_ERROR,
-  UPDATE_FAVORITES_SELECTED_VIDEO,
-  UPDATE_FAVORITES_LIST_OF_VIDEOS,
+  UPDATE_FAVORITE_VIDEOS,
 } from '../actions/actions';
 import { addVideo, deleteVideo, isFavoriteVideo } from '../utils/storage';
 
@@ -27,7 +26,7 @@ export default function reducer(state, action) {
       return { ...state, listofVideos: action.payload.listofVideos };
     case SET_ERROR:
       return { ...state, error: action.payload.error };
-    case UPDATE_FAVORITES_SELECTED_VIDEO:
+    case UPDATE_FAVORITE_VIDEOS:
       if (action.payload) {
         addVideo(state.selectedVideo);
       } else {
@@ -37,8 +36,6 @@ export default function reducer(state, action) {
         ...state,
         selectedVideo: { ...state.selectedVideo, favorite: action.payload },
       };
-    case UPDATE_FAVORITES_LIST_OF_VIDEOS:
-      return { ...state, error: action.payload.error };
     default:
       return state;
   }

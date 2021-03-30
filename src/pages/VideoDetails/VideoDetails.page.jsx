@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Container, SelectedVideo, ListOfVideos } from './VideoDetails.styles';
 import CardDetail from '../../components/CardDetail';
 import { useGlobal } from '../../providers/Global';
 import Navbar from '../../components/Navbar';
 import HeartIcon from '../../components/HeartIcon';
-import { UPDATE_FAVORITES_SELECTED_VIDEO } from '../../actions/actions';
+import { UPDATE_FAVORITE_VIDEOS } from '../../actions/actions';
+import { getVideos } from '../../services/getVideos';
 import { storage } from '../../utils/storage';
 import { FAVORITE_VIDEOS } from '../../utils/constants';
 
 function VideoDetails() {
-  const { state } = useGlobal();
+  const { state, dispatch } = useGlobal();
   const videos =
     window.location.pathname === '/video/' ? state : storage.get(FAVORITE_VIDEOS);
+
+  useEffect(() => {
+    if (
+      state.param &&
+      state.param.length >= 3 &&
+      window.location.pathname === '/video/'
+    ) {
+      getVideos(state.param, dispatch);
+    }
+  }, [state.param, dispatch]);
 
   if (
     !state.selectedVideo ||
@@ -39,7 +50,7 @@ function VideoDetails() {
             <h1>{state.selectedVideo.snippet.title}</h1>
             <p>{state.selectedVideo.snippet.description}</p>
             <HeartIcon
-              type={UPDATE_FAVORITES_SELECTED_VIDEO}
+              type={UPDATE_FAVORITE_VIDEOS}
               isFavorite={state.selectedVideo.favorite}
             />
           </div>

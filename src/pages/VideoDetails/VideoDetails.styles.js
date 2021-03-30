@@ -28,6 +28,7 @@ export const SelectedVideo = styled.div`
   background: ${({ theme }) => theme.cardColor};
   @media only screen and (max-width: 999px) {
     width: 100%;
+    margin-bottom: 1rem;
     p {
       padding-bottom: 2rem;
     }

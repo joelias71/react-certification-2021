@@ -26,7 +26,10 @@ function AuthProvider({ children }) {
 
   const login = useCallback(
     (user, pwd) => {
-      if ((user && pwd && user !== VALID_USERNAME) || pwd !== VALID_PASSWORD) {
+      if (
+        (user && pwd && user.toLowerCase() !== VALID_USERNAME) ||
+        pwd !== VALID_PASSWORD
+      ) {
         throw new Error('Oops, you have an invalid username or password');
       } else {
         setAuthenticated(true);
