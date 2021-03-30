@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Container, SelectedVideo, ListOfVideos } from './VideoDetails.styles';
 import CardDetail from '../../components/CardDetail';
@@ -12,6 +12,7 @@ import { FAVORITE_VIDEOS } from '../../utils/constants';
 
 function VideoDetails() {
   const { state, dispatch } = useGlobal();
+  const [style, setStyle] = useState({ display: 'none' });
   const videos =
     window.location.pathname === '/video/' ? state : storage.get(FAVORITE_VIDEOS);
 
@@ -39,7 +40,14 @@ function VideoDetails() {
     <>
       <Navbar />
       <Container>
-        <SelectedVideo>
+        <SelectedVideo
+          onMouseEnter={() => {
+            setStyle({ display: 'block' });
+          }}
+          onMouseLeave={() => {
+            setStyle({ display: 'none' });
+          }}
+        >
           <iframe
             src={`https://www.youtube.com/embed/${state.selectedVideo.id.videoId}?autoplay=1`}
             title={state.selectedVideo.snippet.title}
@@ -52,6 +60,7 @@ function VideoDetails() {
             <HeartIcon
               type={UPDATE_FAVORITE_VIDEOS}
               isFavorite={state.selectedVideo.favorite}
+              style={style}
             />
           </div>
         </SelectedVideo>
