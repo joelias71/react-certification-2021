@@ -49,6 +49,10 @@ export const NavbarHeader = styled.header`
   align-items: center;
   padding-left: 1rem;
   padding-right: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
 
   .navbar {
     display: flex;
