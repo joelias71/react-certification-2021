@@ -1,24 +1,28 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Navbar from '../../../components/Navbar';
+import Favorites from '../../../pages/Favorites/Favorites.page';
 import GlobalProvider from '../../../providers/Global';
 import AuthProvider from '../../../providers/Auth';
+import { storage } from '../../../utils/storage';
+import { FAVORITE_VIDEOS } from '../../../utils/constants';
 
-describe('Navbar', () => {
+describe('Home', () => {
   let component;
   let props;
 
   beforeEach(() => {
     props = {
-      sidebar: false,
-      setSidebar: jest.fn,
+      videos: {
+        listofVideos: [],
+      },
     };
+    storage.set(FAVORITE_VIDEOS, { listofVideos: [] });
     component = mount(
       <GlobalProvider>
         <AuthProvider>
           <Router>
-            <Navbar {...props} />
+            <Favorites {...props} />
           </Router>
         </AuthProvider>
       </GlobalProvider>

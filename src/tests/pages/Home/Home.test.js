@@ -1,7 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Home from '../../../pages/Home/Home.page';
 import GlobalProvider from '../../../providers/Global';
+import AuthProvider from '../../../providers/Auth';
 
 describe('Home', () => {
   let component;
@@ -13,7 +15,11 @@ describe('Home', () => {
     };
     component = mount(
       <GlobalProvider>
-        <Home {...props} />
+        <AuthProvider>
+          <Router>
+            <Home {...props} />
+          </Router>
+        </AuthProvider>
       </GlobalProvider>
     );
   });
