@@ -1,24 +1,19 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Navbar from '../../../components/Navbar';
+import FourOhFour from '../../../pages/FourOhFour/FourOhFour.page';
 import GlobalProvider from '../../../providers/Global';
 import AuthProvider from '../../../providers/Auth';
 
-describe('Navbar', () => {
+describe('FourOhFour', () => {
   let component;
-  let props;
 
   beforeEach(() => {
-    props = {
-      sidebar: false,
-      setSidebar: jest.fn,
-    };
     component = mount(
       <GlobalProvider>
         <AuthProvider>
           <Router>
-            <Navbar {...props} />
+            <FourOhFour />
           </Router>
         </AuthProvider>
       </GlobalProvider>

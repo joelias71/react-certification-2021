@@ -1,10 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import { CardStyled } from './Card.styles';
 import { useGlobal } from '../../providers/Global';
-import { SET_VIDEO, SET_SEE_VIDEO_DETAIL } from '../../actions/actions';
+import { SET_VIDEO } from '../../actions/actions';
 
 export default function Card({ image, title, description, video }) {
   const { dispatch } = useGlobal();
+  const history = useHistory();
   return (
     <CardStyled
       onClick={() => {
@@ -12,9 +14,7 @@ export default function Card({ image, title, description, video }) {
           type: SET_VIDEO,
           payload: { selectedVideo: video },
         });
-        dispatch({
-          type: SET_SEE_VIDEO_DETAIL,
-        });
+        history.push(`/video${window.location.pathname}`);
       }}
     >
       <img src={image} alt={title} />

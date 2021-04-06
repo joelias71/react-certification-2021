@@ -1,14 +1,19 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { BrowserRouter as Router } from 'react-router-dom';
 import VideoDetails from '../../../pages/VideoDetails/VideoDetails.page';
 import { GlobalContext } from '../../../providers/Global';
+import { FAVORITE_VIDEOS } from '../../../utils/constants';
+import { storage } from '../../../utils/storage';
+import AuthProvider from '../../../providers/Auth';
 
 describe('Home', () => {
   let component;
   let props;
+  let globalProps;
 
   beforeEach(() => {
-    props = {
+    globalProps = {
       selectedVideo: {
         id: {
           videoId: 1,
@@ -35,9 +40,19 @@ describe('Home', () => {
         },
       ],
     };
+    storage.set(FAVORITE_VIDEOS, { listofVideos: [] });
+    props = {
+      videos: {
+        listofVideos: [],
+      },
+    };
     component = mount(
-      <GlobalContext.Provider value={{ state: props, dispatch: jest.fn }}>
-        <VideoDetails {...props} />
+      <GlobalContext.Provider value={{ state: globalProps, dispatch: jest.fn }}>
+        <AuthProvider>
+          <Router>
+            <VideoDetails {...props} />
+          </Router>
+        </AuthProvider>
       </GlobalContext.Provider>
     );
   });

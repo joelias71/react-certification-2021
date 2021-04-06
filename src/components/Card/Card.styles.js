@@ -18,5 +18,11 @@ export const CardStyled = styled.div`
       margin-bottom: 1rem;
       font-size: 1.5em;
     }
+    p {
+      margin-bottom: 1rem;
+    }
+    svg {
+      cursor: pointer;
+    }
   }
 `;

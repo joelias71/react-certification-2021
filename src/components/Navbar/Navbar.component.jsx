@@ -5,8 +5,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import Fab from '@material-ui/core/Fab';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../providers/Auth';
 import { useGlobal } from '../../providers/Global';
-import { CHANGE_THEME, SET_PARAM, SEARCH } from '../../actions/actions';
+import { CHANGE_THEME, SET_PARAM } from '../../actions/actions';
 import {
   CustomSwitch,
   useStyles,
@@ -17,9 +20,11 @@ import {
 
 export default function Navbar() {
   const classes = useStyles();
+  const { logout } = useAuth();
   const { state, dispatch } = useGlobal();
   const [sidebar, setSidebar] = useState(false);
-
+  const { pathname } = window.location;
+  const disabledSearchBar = pathname !== '/video/favorites' && pathname !== '/favorites';
   return (
     <>
       <NavbarHeader>
@@ -31,32 +36,34 @@ export default function Navbar() {
           >
             <MenuIcon />
           </IconButton>
-          <SearchBox>
-            <InputBase
-              className={classes.inputSearch}
-              placeholder="Search ..."
-              value={state.param}
-              onChange={(e) =>
-                dispatch({
-                  type: SET_PARAM,
-                  payload: { ...state, param: e.target.value },
-                })
-              }
-            />
-            <IconButton
-              type="submit"
-              className={classes.iconButton}
-              aria-label="search"
-              onClick={() =>
-                dispatch({
-                  type: SEARCH,
-                  payload: state,
-                })
-              }
-            >
-              <SearchIcon />
-            </IconButton>
-          </SearchBox>
+          {disabledSearchBar && (
+            <SearchBox>
+              <InputBase
+                className={classes.inputSearch}
+                placeholder="Search ..."
+                value={state.param}
+                onChange={(e) =>
+                  dispatch({
+                    type: SET_PARAM,
+                    payload: { ...state, param: e.target.value },
+                  })
+                }
+              />
+              <IconButton
+                type="submit"
+                className={classes.iconButton}
+                aria-label="search"
+                onClick={() =>
+                  dispatch({
+                    type: SET_PARAM,
+                    payload: state,
+                  })
+                }
+              >
+                <SearchIcon />
+              </IconButton>
+            </SearchBox>
+          )}
         </div>
         <div>
           <FormControlLabel
@@ -82,7 +89,15 @@ export default function Navbar() {
             </IconButton>
           </li>
           <li key="home" className="navbar-text">
-            Home
+            <Link to="/">Home</Link>
+          </li>
+          <li key="favorites" className="navbar-text">
+            <Link to="/favorites">Favorites</Link>
+          </li>
+          <li key="logout" className="logout">
+            <Fab variant="extended" aria-label="Log out" onClick={() => logout()}>
+              Log out
+            </Fab>
           </li>
         </ul>
       </NavbarMenu>

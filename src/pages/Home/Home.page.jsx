@@ -3,7 +3,6 @@ import { useGlobal } from '../../providers/Global';
 import Navbar from '../../components/Navbar';
 import { ContainerList } from './Home.styles';
 import { getVideos } from '../../services/getVideos';
-import VideoDetail from '../VideoDetails';
 import HomeContent from '../../components/HomeContent/HomeContent.page';
 
 function Home() {
@@ -18,12 +17,9 @@ function Home() {
   return (
     <>
       <Navbar />
-      {!state.seeVideoDetail && (
-        <ContainerList>
-          <HomeContent />
-        </ContainerList>
-      )}
-      {state.seeVideoDetail && <VideoDetail />}
+      <ContainerList>
+        <HomeContent videos={state} />
+      </ContainerList>
     </>
   );
 }

@@ -13,11 +13,15 @@ describe('HomeContent', () => {
       selectedVideo: {},
       listofVideos: [],
       error: null,
-      seeVideoDetail: false,
+    };
+    const props = {
+      videos: {
+        listofVideos: [],
+      },
     };
     component = mount(
-      <GlobalProvider value={{ state, dispatch: jest.fn }}>
-        <HomeContent />
+      <GlobalProvider value={{ state }}>
+        <HomeContent {...props} />
       </GlobalProvider>
     );
   });
